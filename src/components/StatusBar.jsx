@@ -23,6 +23,7 @@ export default class StatusBar extends Component {
     super(props);
     this.state = {
       status: {
+        // ES6 destructuring
         [statuses.incomplete]: <BlockIcon htmlColor="rgba(184, 51, 255, 1)" fontSize="inherit" />,
         [statuses.inProgress]: <CachedIcon htmlColor="rgba(184, 51, 255, 1)" fontSize="inherit" />,
         [statuses.done]: <DoneIcon htmlColor="rgba(184, 51, 255, 1)" fontSize="inherit" />

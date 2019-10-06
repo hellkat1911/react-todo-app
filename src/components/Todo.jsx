@@ -17,6 +17,8 @@ const StyledDiv = styled.div`
 export default class Todo extends Component {
   render() {
     return (
+      // Event handlers that accept a param should be returned from an
+      // anonymous fn or they will run on every re-render
       <StyledDiv onClick={() => this.props.handleStatus(this.props.todo.id)}>
         <p>{this.props.todo.text}</p>
         <hr style={{ color: '#ccc' }} />

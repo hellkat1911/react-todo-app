@@ -2,19 +2,23 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
-
+// Initial data -- sourced from .js files, but
+// could be database, API, etc.
 import todos from '../data/todos';
 import statuses from '../data/statuses';
 
 const Main = styled.main`
   background: rgba(51, 224, 255, 0.2);
   border: 2px solid rgba(51, 122, 255, 1);
-  margin: 40px;
+  margin: 40px auto;
+  max-width: calc(100% - 80px);
   min-height: calc(100vh - 80px);
   padding: 25px;
+  width: 1200px;
 
   @media (max-width: 805px) {
     margin: 20px;
+    max-width: calc(100% - 40px);
     min-height: calc(100vh - 40px);
   }
 `;
@@ -48,19 +52,24 @@ const Flexed = styled.section`
 `;
 
 export default class Container extends Component {
+  // ES6 includes constructor by default, not necessary
+  // to override just for `super(props)`
   constructor(props) {
     super(props);
     this.state = {
       todos,
       statuses
     };
+    // Call `.bind(this)` on event handlers to preserve `this` reference
     this.addNewTodo = this.addNewTodo.bind(this);
     this.updateStatus = this.updateStatus.bind(this);
   }
 
   addNewTodo(event, value) {
     event.preventDefault();
-    this.setState(state => ({
+    // Calling `setState` with a fn allows access to
+    // current state and props
+    this.setState((state, props) => ({
       todos: [
         ...state.todos,
         {
@@ -72,6 +81,7 @@ export default class Container extends Component {
     }));
   }
 
+  // Class methods don't use the `function` keyword
   updateStatus(id) {
     this.setState(state => {
       const todo = state.todos[id - 1];
@@ -91,6 +101,7 @@ export default class Container extends Component {
     }
   }
 
+  // A `render()` fn is mandatory for a class component
   render() {
     return (
       <Main id="app-container">
@@ -101,6 +112,7 @@ export default class Container extends Component {
             <TodoForm handleSubmit={this.addNewTodo} />
           </Flexed>
           <Flexed>
+            {/* Members/state/props must be accessed on `this` */}
             <TodoList todos={this.state.todos} handleStatus={this.updateStatus} />
           </Flexed>
         </Flex>

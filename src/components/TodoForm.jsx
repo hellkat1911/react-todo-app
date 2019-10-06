@@ -15,10 +15,12 @@ const TodoInput = styled.input`
   display: block;
   font-size: 1.8rem;
   margin-bottom: 10px;
+  max-width: calc(100% - 20px);
   padding: 2px;
-  width: calc(100% - 20px);
+  width: 350px;
 
   @media (max-width: 805px) {
+    max-width: unset;
     width: 100%;
   }
 `;
@@ -33,6 +35,7 @@ const SubmitBtn = styled.input`
   padding: 5px 15px;
 `;
 
+// Create a blank reference to a DOM element
 const ref = createRef();
 
 export default class TodoForm extends Component {
@@ -41,7 +44,9 @@ export default class TodoForm extends Component {
     this.handleNewTodo = this.handleNewTodo.bind(this);
   }
 
+  // Lifecycle : fires after component initial mount
   componentDidMount() {
+    // `ref.current` points to the referenced DOM element
     ref.current.focus();
   }
 
@@ -53,6 +58,7 @@ export default class TodoForm extends Component {
   render() {
     return (
       <StyledForm onSubmit={this.handleNewTodo}>
+        {/* Reference created via component `ref` attribute */}
         <TodoInput ref={ref} />
         <SubmitBtn type="submit" value="Add +" />
       </StyledForm>
