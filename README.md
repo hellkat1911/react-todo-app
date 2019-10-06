@@ -1,8 +1,11 @@
 ## React To-Do App ⚛️
 
-A very simple, styled to-do app built entirely with **ES6 class-based components**.<br /><br />
-Functional components + hooks are the cool new thing 🎸, but there are still plenty of code bases out there built with class components, so I wanted a sandbox to get to know them better. Ask a few personal questions.<br /><br />
-Built with [React](https://reactjs.org) (16.10.2) and [styled-components](https://www.styled-components.com/).<br /><br />
+A very simple, styled to-do app built entirely with **ES6 class-based components**.
+
+Functional components + hooks are the cool new thing 🎸, but there are still plenty of code bases out there built with class components, so I wanted a sandbox to get to know them better. Ask a few personal questions.
+
+Built with [React](https://reactjs.org) (16.10.2) and [styled-components](https://www.styled-components.com/).
+
 Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### Scripts 📜
