@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const StyledForm = styled.form`
   @media (max-width: 805px) {
     margin-bottom: 20px;
+    max-width: 100%;
     text-align: center;
   }
 `;
@@ -14,9 +15,12 @@ const TodoInput = styled.input`
   display: block;
   font-size: 1.8rem;
   margin-bottom: 10px;
-  max-width: 100%;
   padding: 2px;
-  width: 325px;
+  width: calc(100% - 20px);
+
+  @media (max-width: 805px) {
+    width: 100%;
+  }
 `;
 
 const SubmitBtn = styled.input`
@@ -26,7 +30,7 @@ const SubmitBtn = styled.input`
   cursor: pointer;
   font-size: 1.8rem;
   font-weight: 700;
-  padding: 5px;
+  padding: 5px 15px;
 `;
 
 const ref = createRef();
@@ -34,23 +38,23 @@ const ref = createRef();
 export default class TodoForm extends Component {
   constructor(props) {
     super(props);
-    this.handleTodo = this.handleTodo.bind(this);
+    this.handleNewTodo = this.handleNewTodo.bind(this);
   }
 
   componentDidMount() {
     ref.current.focus();
   }
 
-  handleTodo(event) {
+  handleNewTodo(event) {
     this.props.handleSubmit(event, ref.current.value);
     ref.current.value = '';
   }
 
   render() {
     return (
-      <StyledForm onSubmit={this.handleTodo}>
+      <StyledForm onSubmit={this.handleNewTodo}>
         <TodoInput ref={ref} />
-        <SubmitBtn type="submit" value="Add" />
+        <SubmitBtn type="submit" value="Add +" />
       </StyledForm>
     );
   }

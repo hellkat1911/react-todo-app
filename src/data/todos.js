@@ -7,6 +7,6 @@ export default [
   {
     id: 2,
     text: 'Read about semantic HTML for accessibility',
-    status: 'In progress'
+    status: 'Incomplete'
   }
 ];
