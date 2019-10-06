@@ -1,9 +1,11 @@
-## React To-Do App
+## React To-Do App ⚛️
 
-A very simple, clean to-do app built entirely with ES6-class-based components.<br />
-Functional components + hooks are the cool new thing, but there are still plenty of code bases out there built with class components, so it's good to know the ins, outs, and quirks.
+A very simple, styled to-do app built entirely with **ES6 class-based components**.<br />
+Functional components + hooks are the cool new thing 🎸, but there are still plenty of code bases out there built with class components, so I wanted a sandbox to get to know them better. Ask a few personal questions.<br />
+Built with [React](https://reactjs.org) (16.10.2) and [styled-components](https://www.styled-components.com/).<br />
+Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### Available Scripts
+### Scripts 📜
 
 In the project directory, you can run:
 
@@ -28,4 +30,4 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 
 Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.<br />
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Author: [hellkat_](https://twitter.com/hellkat_) 😺
