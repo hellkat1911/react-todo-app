@@ -65,6 +65,11 @@ export default class Container extends Component {
     this.deleteTodo = this.deleteTodo.bind(this);
   }
 
+  generateId() {
+    // Use Unix timestamps for unique IDs
+    return Math.floor(Date.now() / 1000);
+  }
+
   addNewTodo(event, value) {
     event.preventDefault();
     // Calling `setState` with a fn allows access to
@@ -73,7 +78,7 @@ export default class Container extends Component {
       todos: [
         ...state.todos,
         {
-          id: state.todos.length + 1,
+          id: this.generateId(),
           text: value,
           status: statuses.incomplete
         }
@@ -91,6 +96,7 @@ export default class Container extends Component {
   }
 
   cycleStatus(current) {
+    // Statuses imported from external source
     if (current === statuses.incomplete) {
       return statuses.inProgress;
     } else if (current === statuses.inProgress) {
@@ -101,10 +107,11 @@ export default class Container extends Component {
   }
 
   deleteTodo(event, id) {
+    // Prevent event bubbling to parent click handler
     event.stopPropagation();
-    const updated = this.state.todos.filter(item => item.id !== id);
-    this.setState(state => ({
-      todos: updated
+    this.setState((state) => ({
+      // `.filter()` returns new array without selected
+      todos: state.todos.filter(item => item.id !== id)
     }));
   }
 

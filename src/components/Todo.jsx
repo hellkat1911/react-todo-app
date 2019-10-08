@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import StatusBar from './StatusBar';
-import CloseIcon from '@material-ui/icons/HighlightOff';
+import DeleteIcon from '@material-ui/icons/HighlightOff';
 
 const StyledDiv = styled.div`
   background: #fff;
@@ -16,7 +16,7 @@ const StyledDiv = styled.div`
   user-select: none;
   width: 325px;
 
-  & .close-icon {
+  & .delete-icon {
     position: absolute;
     right: 8px;
     top: 8px;
@@ -40,13 +40,13 @@ const StyledDiv = styled.div`
 export default class Todo extends Component {
   render() {
     return (
-      // Event handlers that accept a param should be returned from an
-      // anonymous fn or they will run on every re-render
+      // Handlers that take a param returned from an anonymous fn
       <StyledDiv onClick={() => this.props.handleStatus(this.props.todo.id)}>
-        <CloseIcon
-          classes={{ root: 'close-icon' }}
+        <DeleteIcon
+          classes={{ root: 'delete-icon' }}
           htmlColor="rgba(184, 51, 255, 1)"
           fontSize="inherit"
+          // Pass `event` object to click handler fn
           onClick={event => this.props.handleDelete(event, this.props.todo.id)}
         />
         <p>{this.props.todo.text}</p>

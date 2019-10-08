@@ -13,7 +13,7 @@ export default class TodoList extends Component {
   render() {
     return (
       <StyledList id="todo-list">
-        {/* `.map()` iterates within an expression */}
+        {/* `.map()` can iterate within a JSX expression */}
         {this.props.todos.map(item => (
           <Todo
             key={item.id}
