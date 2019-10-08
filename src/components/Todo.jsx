@@ -2,16 +2,39 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import StatusBar from './StatusBar';
+import CloseIcon from '@material-ui/icons/HighlightOff';
 
 const StyledDiv = styled.div`
   background: #fff;
   border: 2px solid #000;
   cursor: pointer;
+  font-size: 2.2rem;
   margin-bottom: 10px;
   max-width: 100%;
   padding: 10px;
+  position: relative;
   user-select: none;
   width: 325px;
+
+  & .close-icon {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    transition: transform 0.3s ease-in-out;
+    z-index: 2;
+
+    &:hover {
+      transform: scale(1.15);
+    }
+  }
+
+  & p {
+    font-size: 1.5rem;
+  }
+
+  & hr {
+    color: #ccc;
+  }
 `;
 
 export default class Todo extends Component {
@@ -20,8 +43,14 @@ export default class Todo extends Component {
       // Event handlers that accept a param should be returned from an
       // anonymous fn or they will run on every re-render
       <StyledDiv onClick={() => this.props.handleStatus(this.props.todo.id)}>
+        <CloseIcon
+          classes={{ root: 'close-icon' }}
+          htmlColor="rgba(184, 51, 255, 1)"
+          fontSize="inherit"
+          onClick={event => this.props.handleDelete(event, this.props.todo.id)}
+        />
         <p>{this.props.todo.text}</p>
-        <hr style={{ color: '#ccc' }} />
+        <hr />
         <StatusBar status={this.props.todo.status} />
       </StyledDiv>
     );

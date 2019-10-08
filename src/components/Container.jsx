@@ -57,12 +57,12 @@ export default class Container extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos,
-      statuses
+      todos
     };
     // Call `.bind(this)` on event handlers to preserve `this` reference
     this.addNewTodo = this.addNewTodo.bind(this);
     this.updateStatus = this.updateStatus.bind(this);
+    this.deleteTodo = this.deleteTodo.bind(this);
   }
 
   addNewTodo(event, value) {
@@ -75,7 +75,7 @@ export default class Container extends Component {
         {
           id: state.todos.length + 1,
           text: value,
-          status: this.state.statuses.incomplete
+          status: statuses.incomplete
         }
       ]
     }));
@@ -84,14 +84,13 @@ export default class Container extends Component {
   // Class methods don't use the `function` keyword
   updateStatus(id) {
     this.setState(state => {
-      const todo = state.todos[id - 1];
+      const todo = state.todos.find(item => item.id === id);
       todo.status = this.cycleStatus(todo.status);
       return state.todos;
     });
   }
 
   cycleStatus(current) {
-    const statuses = this.state.statuses;
     if (current === statuses.incomplete) {
       return statuses.inProgress;
     } else if (current === statuses.inProgress) {
@@ -99,6 +98,14 @@ export default class Container extends Component {
     } else {
       return statuses.incomplete;
     }
+  }
+
+  deleteTodo(event, id) {
+    event.stopPropagation();
+    const updated = this.state.todos.filter(item => item.id !== id);
+    this.setState(state => ({
+      todos: updated
+    }));
   }
 
   // A `render()` fn is mandatory for a class component
@@ -113,7 +120,11 @@ export default class Container extends Component {
           </Flexed>
           <Flexed>
             {/* Members/state/props must be accessed on `this` */}
-            <TodoList todos={this.state.todos} handleStatus={this.updateStatus} />
+            <TodoList
+              todos={this.state.todos}
+              handleStatus={this.updateStatus}
+              handleDelete={this.deleteTodo}
+            />
           </Flexed>
         </Flex>
       </Main>

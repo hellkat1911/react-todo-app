@@ -19,6 +19,7 @@ export default class TodoList extends Component {
             key={item.id}
             todo={item}
             handleStatus={this.props.handleStatus}
+            handleDelete={this.props.handleDelete}
           />
         ))}
       </StyledList>
